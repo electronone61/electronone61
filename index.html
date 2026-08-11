@@ -249,6 +249,21 @@
   @media (max-width:860px){ .grid3{ grid-template-columns:1fr 1fr; } }
   @media (max-width:560px){ .grid3{ grid-template-columns:1fr; } }
 
+  .server-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  @media (max-width:860px){ .server-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:560px){ .server-grid{ grid-template-columns:repeat(2,1fr); } }
+  .server-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:22px 12px; display:flex; flex-direction:column; align-items:center; gap:10px;
+    transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    text-align:center;
+  }
+  .server-card:hover{ border-color:rgba(73,211,240,0.4); transform:translateY(-2px); }
+  .server-card.active{ border-color:var(--cyan); background:rgba(73,211,240,0.08); }
+  .server-flag{ font-size:1.8rem; line-height:1; }
+  .server-name{ font-size:0.85rem; color:var(--text-dim); }
+  .server-card.active .server-name{ color:var(--text); font-weight:600; }
+
   .card{
     background:var(--surface); border:1px solid var(--line); border-radius:14px;
     padding:26px; transition: border-color .18s ease, transform .18s ease;
@@ -668,6 +683,38 @@
     <section>
       <div class="wrap">
         <div class="section-head">
+          <div class="eyebrow"><span class="dot"></span> انتخاب سرور</div>
+          <h2>چه سرورهایی می‌خواهید؟</h2>
+          <p>یکی از سرورهای زیر رو انتخاب کنید. بعد از خرید، دسترسی به همه سرورها فعال می‌شود.</p>
+        </div>
+        <div class="server-grid" id="serverGrid">
+          <button type="button" class="server-card" data-server="germany">
+            <span class="server-flag">🇩🇪</span>
+            <span class="server-name">سرور آلمان</span>
+          </button>
+          <button type="button" class="server-card" data-server="france">
+            <span class="server-flag">🇫🇷</span>
+            <span class="server-name">سرور فرانسه</span>
+          </button>
+          <button type="button" class="server-card" data-server="uk">
+            <span class="server-flag">🇬🇧</span>
+            <span class="server-name">سرور انگلیس</span>
+          </button>
+          <button type="button" class="server-card" data-server="usa">
+            <span class="server-flag">🇺🇸</span>
+            <span class="server-name">سرور آمریکا</span>
+          </button>
+          <button type="button" class="server-card" data-server="finland">
+            <span class="server-flag">🇫🇮</span>
+            <span class="server-name">سرور فنلاند</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
           <div class="eyebrow"><span class="dot"></span> شروع به کار</div>
           <h2>سه قدم تا یک اتصال امن</h2>
         </div>
@@ -913,7 +960,7 @@
 
         <div class="gb-calc">
           <div>
-            <span class="rate-tag">نرخ ثابت: ۱۵,۰۰۰ تومان به ازای هر گیگابایت</span>
+            <span class="rate-tag">نرخ ثابت: ۳۰,۰۰۰ تومان به ازای هر گیگابایت</span>
             <div class="gb-row">
               <div class="gb-amount"><span id="gbLabel">۵۰</span> گیگابایت</div>
             </div>
@@ -924,14 +971,7 @@
               <button data-gb="100">۱۰۰ گیگ</button>
               <button data-gb="300">۳۰۰ گیگ</button>
             </div>
-            <span class="rate-tag" style="margin-top:16px;">مدت اعتبار</span>
-            <div class="day-select" id="gbDaySelect">
-              <button data-days="15">۱۵ روز</button>
-              <button data-days="30" class="active">۳۰ روز</button>
-              <button data-days="60">۶۰ روز</button>
-              <button data-days="90">۹۰ روز</button>
-            </div>
-            <div class="surcharge-note" id="gbSurchargeNote"></div>
+            <span class="rate-tag" style="margin-top:16px;">مدت اعتبار: یک ماهه</span>
           </div>
           <div class="result">
             <div class="total-price"><span id="gbTotal">۷۵۰,۰۰۰</span> تومان<small>هزینه کل شارژ</small></div>
@@ -946,59 +986,44 @@
           <div class="plan">
             <div class="plan-name">بسته سبک</div>
             <div class="plan-desc">مناسب مرور روزمره و مصرف کم</div>
-            <div class="price" id="priceLight">۱۵۰,۰۰۰<span>تومان</span></div>
-            <div class="price-note">۱۰ گیگابایت</div>
-            <div class="day-select" data-plan="light">
-              <button data-days="30" class="active">۳۰ روز</button>
-              <button data-days="60">۶۰ روز</button>
-              <button data-days="90">۹۰ روز</button>
-            </div>
+            <div class="price" id="priceLight">۳۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-note">۱۰ گیگابایت · یک ماهه</div>
             <ul>
               <li><span class="check">✓</span> ۱۴۰+ سرور در ۶۲ کشور</li>
               <li><span class="check">✓</span> ۲ اتصال هم‌زمان</li>
               <li><span class="check">✓</span> WireGuard و OpenVPN</li>
               <li><span class="check">✓</span> کلید قطع خودکار</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyLight" data-gb="10" data-base-price="150000" data-price="150000" data-days="30" data-label="بسته سبک">انتخاب بسته</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyLight" data-gb="10" data-base-price="300000" data-price="300000" data-days="30" data-meta="یک ماهه" data-label="بسته سبک">انتخاب بسته</a>
           </div>
 
           <div class="plan featured">
             <div class="badge">پرمصرف‌ترین</div>
             <div class="plan-name">بسته استاندارد</div>
             <div class="plan-desc">مناسب استریم و کار روزانه</div>
-            <div class="price" id="priceStandard">۷۵۰,۰۰۰<span>تومان</span></div>
-            <div class="price-note">۵۰ گیگابایت</div>
-            <div class="day-select" data-plan="standard">
-              <button data-days="30" class="active">۳۰ روز</button>
-              <button data-days="60">۶۰ روز</button>
-              <button data-days="90">۹۰ روز</button>
-            </div>
+            <div class="price" id="priceStandard">۱,۵۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-note">۵۰ گیگابایت · یک ماهه</div>
             <ul>
               <li><span class="check">✓</span> همه امکانات بسته سبک</li>
               <li><span class="check">✓</span> ۵ اتصال هم‌زمان</li>
               <li><span class="check">✓</span> IP اختصاصی رایگان</li>
               <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
             </ul>
-            <a href="#signup" class="btn-primary buy-btn" id="buyStandard" data-gb="50" data-base-price="750000" data-price="750000" data-days="30" data-label="بسته استاندارد">انتخاب بسته</a>
+            <a href="#signup" class="btn-primary buy-btn" id="buyStandard" data-gb="50" data-base-price="1500000" data-price="1500000" data-days="30" data-meta="یک ماهه" data-label="بسته استاندارد">انتخاب بسته</a>
           </div>
 
           <div class="plan">
             <div class="plan-name">بسته سنگین</div>
             <div class="plan-desc">مناسب چند دستگاه و مصرف بالا</div>
-            <div class="price" id="priceHeavy">۱,۵۰۰,۰۰۰<span>تومان</span></div>
-            <div class="price-note">۱۰۰ گیگابایت</div>
-            <div class="day-select" data-plan="heavy">
-              <button data-days="30" class="active">۳۰ روز</button>
-              <button data-days="60">۶۰ روز</button>
-              <button data-days="90">۹۰ روز</button>
-            </div>
+            <div class="price" id="priceHeavy">۳,۰۰۰,۰۰۰<span>تومان</span></div>
+            <div class="price-note">۱۰۰ گیگابایت · یک ماهه</div>
             <ul>
               <li><span class="check">✓</span> همه امکانات بسته استاندارد</li>
               <li><span class="check">✓</span> ۱۰ اتصال هم‌زمان</li>
               <li><span class="check">✓</span> اولویت در سرعت سرور</li>
               <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyHeavy" data-gb="100" data-base-price="1500000" data-price="1500000" data-days="30" data-label="بسته سنگین">انتخاب بسته</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyHeavy" data-gb="100" data-base-price="3000000" data-price="3000000" data-days="30" data-meta="یک ماهه" data-label="بسته سنگین">انتخاب بسته</a>
           </div>
         </div>
       </div>
@@ -1267,6 +1292,21 @@
   navToggle.addEventListener('click', () => navLinksEl.classList.toggle('open'));
   navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinksEl.classList.remove('open')));
 
+  // ---- VPN server selection ----
+  let selectedServer = null;
+  document.querySelectorAll('.server-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const alreadyActive = card.classList.contains('active');
+      document.querySelectorAll('.server-card').forEach(c => c.classList.remove('active'));
+      if(!alreadyActive){
+        card.classList.add('active');
+        selectedServer = card.dataset.server;
+      } else {
+        selectedServer = null;
+      }
+    });
+  });
+
   // ---- Telegram order notifications ----
   // Fill these in with your own bot token & chat id to receive a Telegram
   // message every time someone confirms they've paid ("پرداخت کردم").
@@ -1288,8 +1328,7 @@
   }
 
   // ---- GB pricing calculator ----
-  const RATE_TOMAN_PER_GB = 15000;
-  const OVER_30_DAYS_SURCHARGE = 10000;
+  const RATE_TOMAN_PER_GB = 30000;
   const faNumerals = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
   function toFa(numStr){ return numStr.replace(/[0-9]/g, d => faNumerals[d]); }
   function formatToman(n){ return toFa(Math.round(n).toLocaleString('en-US')); }
@@ -1298,16 +1337,12 @@
   const gbLabel = document.getElementById('gbLabel');
   const gbTotal = document.getElementById('gbTotal');
   const gbPresetButtons = document.querySelectorAll('#gbPresets button');
-  const gbDayButtons = document.querySelectorAll('#gbDaySelect button');
-  const gbSurchargeNote = document.getElementById('gbSurchargeNote');
-  let gbDays = 30;
+  const gbDays = 30; // all VPN plans are fixed to one month
 
   function updateGbCalc(gb){
     gb = Number(gb);
     gbLabel.textContent = toFa(String(gb));
-    const surcharge = gbDays > 30 ? OVER_30_DAYS_SURCHARGE : 0;
-    gbTotal.textContent = formatToman(gb * RATE_TOMAN_PER_GB + surcharge);
-    gbSurchargeNote.textContent = surcharge ? `شامل ${toFa(String(surcharge/1000))} هزار تومان هزینه اعتبار بیش از ۳۰ روز` : '';
+    gbTotal.textContent = formatToman(gb * RATE_TOMAN_PER_GB);
     gbSlider.value = gb;
     gbPresetButtons.forEach(b => b.classList.toggle('active', Number(b.dataset.gb) === Number(gb)));
   }
@@ -1316,46 +1351,7 @@
   gbPresetButtons.forEach(btn => {
     btn.addEventListener('click', () => updateGbCalc(btn.dataset.gb));
   });
-  gbDayButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      gbDayButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      gbDays = Number(btn.dataset.days);
-      updateGbCalc(gbSlider.value);
-    });
-  });
   updateGbCalc(gbSlider.value);
-
-  // ---- Package plan validity selectors ----
-  const planPriceEls = {
-    light: document.getElementById('priceLight'),
-    standard: document.getElementById('priceStandard'),
-    heavy: document.getElementById('priceHeavy')
-  };
-  const planBuyBtns = {
-    light: document.getElementById('buyLight'),
-    standard: document.getElementById('buyStandard'),
-    heavy: document.getElementById('buyHeavy')
-  };
-
-  document.querySelectorAll('.day-select[data-plan]').forEach(group => {
-    const plan = group.dataset.plan;
-    group.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const days = Number(btn.dataset.days);
-        const buyBtn = planBuyBtns[plan];
-        const base = Number(buyBtn.dataset.basePrice);
-        const surcharge = days > 30 ? OVER_30_DAYS_SURCHARGE : 0;
-        const total = base + surcharge;
-        buyBtn.dataset.price = total;
-        buyBtn.dataset.days = days;
-        const priceEl = planPriceEls[plan];
-        priceEl.innerHTML = formatToman(total) + '<span>تومان</span>';
-      });
-    });
-  });
 
   // ---- AI account duration selectors ----
   const aiPriceEls = {
@@ -1679,8 +1675,7 @@
         item = { label: btn.dataset.label, meta: btn.dataset.meta, price: Number(btn.dataset.price) };
       } else if(btn.id === 'buyGbBtn'){
         const gb = Number(gbSlider.value);
-        const surcharge = gbDays > 30 ? OVER_30_DAYS_SURCHARGE : 0;
-        item = { label: 'حجم سفارشی', gb, days: gbDays, price: gb * RATE_TOMAN_PER_GB + surcharge };
+        item = { label: 'حجم سفارشی', meta: 'یک ماهه', price: gb * RATE_TOMAN_PER_GB };
       } else {
         item = { label: btn.dataset.label, gb: Number(btn.dataset.gb), days: Number(btn.dataset.days), price: Number(btn.dataset.price) };
       }
