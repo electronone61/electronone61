@@ -429,12 +429,12 @@
   .signup-card .sub{ text-align:center; color:var(--text-dim); font-size:0.9rem; margin-bottom:28px; }
   .field{ margin-bottom:18px; }
   .field label{ display:block; font-size:0.85rem; color:var(--text-dim); margin-bottom:8px; }
-  .field input{
+  .field input, .field select{
     width:100%; padding:12px 14px; border-radius:9px; border:1px solid var(--line);
     background:var(--bg-alt); color:var(--text); font-family:var(--font-body); font-size:0.94rem;
     transition: border-color .18s ease;
   }
-  .field input:focus{ outline:none; border-color:var(--cyan); }
+  .field input:focus, .field select:focus{ outline:none; border-color:var(--cyan); }
   .field .hint{ font-size:0.76rem; color:var(--text-dimmer); margin-top:6px; }
   .field .err{ font-size:0.78rem; color:var(--danger); margin-top:6px; display:none; }
   .field.invalid input{ border-color:var(--danger); }
@@ -535,8 +535,22 @@
   .pb-copy:hover{ border-color:var(--cyan); color:var(--cyan); }
   .pb-copy.copied{ border-color:var(--cyan); color:var(--cyan); }
   .pb-amount{ font-family:var(--font-display); font-weight:700; font-size:1.6rem; color:var(--text); }
-  .pb-telegram{ margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
-  .pb-telegram.hidden{ display:none; }
+  .pb-receipt{ margin-top:18px; padding-top:18px; border-top:1px solid var(--line); text-align:right; }
+  .pb-receipt.hidden{ display:none; }
+  .pb-file-label{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    border:1.5px dashed var(--line); border-radius:10px; padding:16px;
+    color:var(--text-dim); font-size:0.88rem; cursor:pointer; margin-top:10px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .pb-file-label:hover{ border-color:var(--cyan); color:var(--text); }
+  .pb-file-label.has-file{ border-color:var(--cyan); color:var(--cyan); border-style:solid; }
+  .pb-extra{ margin-top:18px; padding-top:16px; border-top:1px solid var(--line); }
+  .pb-extra.hidden{ display:none; }
+  .pb-subhead{ font-size:0.85rem; color:var(--text-dim); margin-bottom:14px; text-align:center; }
+  .pb-error{ color:var(--danger); font-size:0.8rem; margin-top:10px; text-align:center; }
+  .pb-error.hidden{ display:none; }
+  .pb-order-code{ font-family:var(--font-mono); color:var(--cyan); font-size:0.85rem; margin-top:10px; }
 
   .checkout-row{ display:flex; gap:10px; margin-top:18px; }
   .checkout-row .btn-primary, .checkout-row .btn-ghost{ flex:1; text-align:center; }
@@ -772,7 +786,7 @@
               <li><span class="check">✓</span> تحویل فوری بعد از خرید</li>
               <li><span class="check">✓</span> پشتیبانی در صورت مشکل ورود</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyChatgpt" data-kind="ai" data-base-price="5000000" data-price="5000000" data-months="1" data-meta="ماهانه" data-label="ChatGPT Plus">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyChatgpt" data-kind="ai" data-base-price="5000000" data-price="5000000" data-months="1" data-meta="ماهانه" data-label="ChatGPT Plus" data-category="ai">انتخاب</a>
           </div>
 
           <div class="plan featured">
@@ -786,7 +800,7 @@
               <li><span class="check">✓</span> تحویل فوری بعد از خرید</li>
               <li><span class="check">✓</span> پشتیبانی در صورت مشکل ورود</li>
             </ul>
-            <a href="#signup" class="btn-primary buy-btn" id="buyClaude" data-kind="ai" data-base-price="5200000" data-price="5200000" data-months="1" data-meta="ماهانه" data-label="Claude Pro">انتخاب</a>
+            <a href="#signup" class="btn-primary buy-btn" id="buyClaude" data-kind="ai" data-base-price="5200000" data-price="5200000" data-months="1" data-meta="ماهانه" data-label="Claude Pro" data-category="ai">انتخاب</a>
           </div>
 
           <div class="plan">
@@ -799,7 +813,7 @@
               <li><span class="check">✓</span> تحویل فوری بعد از خرید</li>
               <li><span class="check">✓</span> پشتیبانی در صورت مشکل ورود</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyGemini" data-kind="ai" data-base-price="4000000" data-price="4000000" data-months="1" data-meta="ماهانه" data-label="Gemini Pro">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyGemini" data-kind="ai" data-base-price="4000000" data-price="4000000" data-months="1" data-meta="ماهانه" data-label="Gemini Pro" data-category="ai">انتخاب</a>
           </div>
         </div>
       </div>
@@ -837,7 +851,7 @@
               <li><span class="check">✓</span> تحویل سریع بعد از خرید</li>
               <li><span class="check">✓</span> بدون نیاز به اطلاعات حساس اکانت</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" data-price="180000" data-meta="شارژ مستقیم" data-label="۸۰ CP">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" data-price="180000" data-meta="شارژ مستقیم" data-label="۸۰ CP" data-category="cp">انتخاب</a>
           </div>
 
           <div class="plan">
@@ -849,7 +863,7 @@
               <li><span class="check">✓</span> تحویل سریع بعد از خرید</li>
               <li><span class="check">✓</span> بدون نیاز به اطلاعات حساس اکانت</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" data-price="330000" data-meta="شارژ مستقیم" data-label="۱۶۰ CP">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" data-price="330000" data-meta="شارژ مستقیم" data-label="۱۶۰ CP" data-category="cp">انتخاب</a>
           </div>
 
           <div class="plan featured">
@@ -862,7 +876,7 @@
               <li><span class="check">✓</span> تحویل سریع بعد از خرید</li>
               <li><span class="check">✓</span> بدون نیاز به اطلاعات حساس اکانت</li>
             </ul>
-            <a href="#signup" class="btn-primary buy-btn" data-price="495000" data-meta="شارژ مستقیم" data-label="۴۲۰ CP">انتخاب</a>
+            <a href="#signup" class="btn-primary buy-btn" data-price="495000" data-meta="شارژ مستقیم" data-label="۴۲۰ CP" data-category="cp">انتخاب</a>
           </div>
 
           <div class="plan">
@@ -874,7 +888,7 @@
               <li><span class="check">✓</span> تحویل سریع بعد از خرید</li>
               <li><span class="check">✓</span> بدون نیاز به اطلاعات حساس اکانت</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" data-price="1700000" data-meta="شارژ مستقیم" data-label="۸۸۰ CP">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" data-price="1700000" data-meta="شارژ مستقیم" data-label="۸۸۰ CP" data-category="cp">انتخاب</a>
           </div>
 
           <div class="plan">
@@ -886,7 +900,7 @@
               <li><span class="check">✓</span> تحویل سریع بعد از خرید</li>
               <li><span class="check">✓</span> بدون نیاز به اطلاعات حساس اکانت</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" data-price="3600000" data-meta="شارژ مستقیم" data-label="۲۴۰۰ CP">انتخاب</a>
+            <a href="#signup" class="btn-ghost buy-btn" data-price="3600000" data-meta="شارژ مستقیم" data-label="۲۴۰۰ CP" data-category="cp">انتخاب</a>
           </div>
         </div>
       </div>
@@ -975,7 +989,7 @@
           </div>
           <div class="result">
             <div class="total-price"><span id="gbTotal">۷۵۰,۰۰۰</span> تومان<small>هزینه کل شارژ</small></div>
-            <a href="#signup" class="btn-primary buy-btn" id="buyGbBtn" style="margin-top:18px;">خرید این حجم</a>
+            <a href="#signup" class="btn-primary buy-btn" id="buyGbBtn" style="margin-top:18px;" data-category="vpn">خرید این حجم</a>
           </div>
         </div>
 
@@ -994,7 +1008,7 @@
               <li><span class="check">✓</span> WireGuard و OpenVPN</li>
               <li><span class="check">✓</span> کلید قطع خودکار</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyLight" data-gb="10" data-base-price="300000" data-price="300000" data-days="30" data-meta="یک ماهه" data-label="بسته سبک">انتخاب بسته</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyLight" data-gb="10" data-base-price="300000" data-price="300000" data-days="30" data-meta="یک ماهه" data-label="بسته سبک" data-category="vpn">انتخاب بسته</a>
           </div>
 
           <div class="plan featured">
@@ -1009,7 +1023,7 @@
               <li><span class="check">✓</span> IP اختصاصی رایگان</li>
               <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
             </ul>
-            <a href="#signup" class="btn-primary buy-btn" id="buyStandard" data-gb="50" data-base-price="1500000" data-price="1500000" data-days="30" data-meta="یک ماهه" data-label="بسته استاندارد">انتخاب بسته</a>
+            <a href="#signup" class="btn-primary buy-btn" id="buyStandard" data-gb="50" data-base-price="1500000" data-price="1500000" data-days="30" data-meta="یک ماهه" data-label="بسته استاندارد" data-category="vpn">انتخاب بسته</a>
           </div>
 
           <div class="plan">
@@ -1023,7 +1037,7 @@
               <li><span class="check">✓</span> اولویت در سرعت سرور</li>
               <li><span class="check">✓</span> پشتیبانی اولویت‌دار</li>
             </ul>
-            <a href="#signup" class="btn-ghost buy-btn" id="buyHeavy" data-gb="100" data-base-price="3000000" data-price="3000000" data-days="30" data-meta="یک ماهه" data-label="بسته سنگین">انتخاب بسته</a>
+            <a href="#signup" class="btn-ghost buy-btn" id="buyHeavy" data-gb="100" data-base-price="3000000" data-price="3000000" data-days="30" data-meta="یک ماهه" data-label="بسته سنگین" data-category="vpn">انتخاب بسته</a>
           </div>
         </div>
       </div>
@@ -1128,15 +1142,48 @@
               <button type="button" class="btn-ghost" id="cancelPaymentBtn">منصرف شدن</button>
             </div>
 
-            <div class="pb-telegram hidden" id="pbTelegramStep">
-              <p class="pb-label">حالا عکس فیش واریزی را برای آیدی تلگرام زیر ارسال کنید:</p>
-              <a href="https://t.me/MobinMet" target="_blank" rel="noopener" class="btn-primary" style="display:block; text-align:center; margin-top:10px;">ارسال فیش در تلگرام (@MobinMet)</a>
-              <button type="button" class="btn-ghost" id="receiptDoneBtn" style="width:100%; margin-top:10px;">انجام شد</button>
+            <div class="pb-receipt hidden" id="pbReceiptStep">
+              <p class="pb-label">عکس فیش واریزی رو همین‌جا آپلود کنید:</p>
+              <label class="pb-file-label" id="pbFileLabel">
+                <input type="file" accept="image/*" id="pbFileInput" hidden>
+                <span id="pbFileText">انتخاب عکس فیش</span>
+              </label>
+
+              <div class="pb-extra hidden" id="pbCpFields">
+                <p class="pb-subhead">اطلاعات اکانت بازی (برای شارژ سی‌پی)</p>
+                <div class="field"><label>آیدی/نام کاربری در بازی</label><input type="text" id="cpGameId" placeholder="مثلاً Player123"></div>
+                <div class="field"><label>ایمیل شما در بازی</label><input type="email" id="cpGameEmail" placeholder="you@example.com"></div>
+                <div class="field"><label>رمز عبور شما در بازی</label><input type="password" id="cpGamePass" placeholder="رمز عبور اکانت بازی"></div>
+                <div class="field"><label>با چه اکانتی وارد می‌شوید؟</label>
+                  <select id="cpLoginMethod">
+                    <option value="">انتخاب کنید</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Google">Google</option>
+                    <option value="Guest">مهمان (Guest)</option>
+                    <option value="سایر">سایر</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="pb-extra hidden" id="pbAiFields">
+                <p class="pb-subhead">اطلاعات اکانت هوش مصنوعی</p>
+                <div class="field"><label>ایمیل هوش مصنوعی</label><input type="email" id="aiAccEmail" placeholder="you@example.com"></div>
+                <div class="field"><label>رمز عبور شما در هوش مصنوعی</label><input type="password" id="aiAccPass" placeholder="رمز عبور اکانت"></div>
+              </div>
+
+              <div class="pb-extra hidden" id="pbVpnFields">
+                <p class="pb-subhead">اطلاعات تحویل VPN</p>
+                <div class="field"><label>آیدی تلگرام شما</label><input type="text" id="vpnTelegramId" placeholder="مثلاً @username"></div>
+              </div>
+
+              <p class="pb-error hidden" id="pbReceiptError">لطفاً عکس فیش رو انتخاب کنید.</p>
+              <button type="button" class="btn-primary" id="sendReceiptBtn" style="width:100%; margin-top:14px;">ارسال فیش</button>
             </div>
 
             <div class="pb-done hidden" id="pbDoneStep">
               <div class="check-icn" style="margin:0 auto 12px;">✓</div>
               <p>سفارش شما ثبت شد. بعد از تایید فیش، سفارش برایتان فعال می‌شود.</p>
+              <p class="pb-order-code" id="pbOrderCode"></p>
             </div>
           </div>
 
@@ -1314,8 +1361,8 @@
   // 2) Send your new bot any message, then open:
   //    https://api.telegram.org/bot<TOKEN>/getUpdates
   //    and copy the "id" number under "chat" -> that's your chat id.
-  const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';
-  const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID_HERE';
+  const TELEGRAM_BOT_TOKEN = '8768151966:AAHp5JB8WngfDllCu_yeKGNkaOEbanP-nHU';
+  const TELEGRAM_CHAT_ID = '1291188451';
 
   function notifyTelegramOrder(message){
     if(!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN.includes('YOUR_')) return;
@@ -1325,6 +1372,28 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
     }).catch(() => {});
+  }
+
+  // Sends the uploaded receipt photo (+ order caption) straight to your Telegram via the bot,
+  // so the buyer never has to leave the site. Same token/chat id as above.
+  function notifyTelegramReceipt(file, caption){
+    if(!TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN.includes('YOUR_')) return Promise.resolve(false);
+    if(!TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID.includes('YOUR_')) return Promise.resolve(false);
+    const formData = new FormData();
+    formData.append('chat_id', TELEGRAM_CHAT_ID);
+    formData.append('caption', caption);
+    formData.append('photo', file);
+    return fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+      method: 'POST',
+      body: formData
+    }).then(r => r.ok).catch(() => false);
+  }
+
+  function generateOrderCode(){
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = 'EO-';
+    for(let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+    return code;
   }
 
   // ---- GB pricing calculator ----
@@ -1544,16 +1613,37 @@
   const pbCardNumber = document.getElementById('pbCardNumber');
   const paidBtn = document.getElementById('paidBtn');
   const cancelPaymentBtn = document.getElementById('cancelPaymentBtn');
-  const pbTelegramStep = document.getElementById('pbTelegramStep');
-  const receiptDoneBtn = document.getElementById('receiptDoneBtn');
+  const pbReceiptStep = document.getElementById('pbReceiptStep');
+  const pbFileInput = document.getElementById('pbFileInput');
+  const pbFileLabel = document.getElementById('pbFileLabel');
+  const pbFileText = document.getElementById('pbFileText');
+  const pbCpFields = document.getElementById('pbCpFields');
+  const pbAiFields = document.getElementById('pbAiFields');
+  const pbVpnFields = document.getElementById('pbVpnFields');
+  const pbReceiptError = document.getElementById('pbReceiptError');
+  const sendReceiptBtn = document.getElementById('sendReceiptBtn');
   const pbDoneStep = document.getElementById('pbDoneStep');
+  const pbOrderCode = document.getElementById('pbOrderCode');
 
   function resetPaymentFlow(){
     paymentBox.classList.add('hidden');
-    pbTelegramStep.classList.add('hidden');
+    pbReceiptStep.classList.add('hidden');
     pbDoneStep.classList.add('hidden');
     paidBtn.parentElement.style.display = 'flex';
     checkoutBtn.parentElement.style.display = 'flex';
+    pbFileInput.value = '';
+    pbFileText.textContent = 'انتخاب عکس فیش';
+    pbFileLabel.classList.remove('has-file');
+    pbReceiptError.classList.add('hidden');
+    document.getElementById('cpGameId').value = '';
+    document.getElementById('cpGameEmail').value = '';
+    document.getElementById('cpGamePass').value = '';
+    document.getElementById('cpLoginMethod').value = '';
+    document.getElementById('aiAccEmail').value = '';
+    document.getElementById('aiAccPass').value = '';
+    document.getElementById('vpnTelegramId').value = '';
+    sendReceiptBtn.disabled = false;
+    sendReceiptBtn.textContent = 'ارسال فیش';
   }
 
   checkoutBtn.addEventListener('click', () => {
@@ -1561,7 +1651,7 @@
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     pbAmount.textContent = formatToman(total);
     paymentBox.classList.remove('hidden');
-    pbTelegramStep.classList.add('hidden');
+    pbReceiptStep.classList.add('hidden');
     pbDoneStep.classList.add('hidden');
     paidBtn.parentElement.style.display = 'flex';
     checkoutBtn.parentElement.style.display = 'none';
@@ -1591,23 +1681,88 @@
 
   paidBtn.addEventListener('click', () => {
     paidBtn.parentElement.style.display = 'none';
-    pbTelegramStep.classList.remove('hidden');
+    pbReceiptStep.classList.remove('hidden');
     pbDoneStep.classList.add('hidden');
 
-    if(cart.length === 0) return;
+    const categories = new Set(cart.map(item => item.category));
+    pbCpFields.classList.toggle('hidden', !categories.has('cp'));
+    pbAiFields.classList.toggle('hidden', !categories.has('ai'));
+    pbVpnFields.classList.toggle('hidden', !categories.has('vpn'));
+  });
+
+  pbFileInput.addEventListener('change', () => {
+    if(pbFileInput.files && pbFileInput.files[0]){
+      pbFileText.textContent = pbFileInput.files[0].name;
+      pbFileLabel.classList.add('has-file');
+      pbReceiptError.classList.add('hidden');
+    } else {
+      pbFileText.textContent = 'انتخاب عکس فیش';
+      pbFileLabel.classList.remove('has-file');
+    }
+  });
+
+  sendReceiptBtn.addEventListener('click', () => {
+    const file = pbFileInput.files && pbFileInput.files[0];
+    if(!file){
+      pbReceiptError.textContent = 'لطفاً عکس فیش رو انتخاب کنید.';
+      pbReceiptError.classList.remove('hidden');
+      return;
+    }
+
+    const categories = new Set(cart.map(item => item.category));
+    const cpGameId = document.getElementById('cpGameId').value.trim();
+    const cpGameEmail = document.getElementById('cpGameEmail').value.trim();
+    const cpGamePass = document.getElementById('cpGamePass').value;
+    const cpLoginMethod = document.getElementById('cpLoginMethod').value;
+    if(categories.has('cp') && (!cpGameId || !cpGameEmail || !cpGamePass || !cpLoginMethod)){
+      pbReceiptError.textContent = 'لطفاً اطلاعات اکانت بازی رو کامل کنید.';
+      pbReceiptError.classList.remove('hidden');
+      return;
+    }
+
+    const aiAccEmail = document.getElementById('aiAccEmail').value.trim();
+    const aiAccPass = document.getElementById('aiAccPass').value;
+    if(categories.has('ai') && (!aiAccEmail || !aiAccPass)){
+      pbReceiptError.textContent = 'لطفاً اطلاعات اکانت هوش مصنوعی رو کامل کنید.';
+      pbReceiptError.classList.remove('hidden');
+      return;
+    }
+
+    const vpnTelegramId = document.getElementById('vpnTelegramId').value.trim();
+    if(categories.has('vpn') && !vpnTelegramId){
+      pbReceiptError.textContent = 'لطفاً آیدی تلگرام‌تون رو وارد کنید.';
+      pbReceiptError.classList.remove('hidden');
+      return;
+    }
+
+    pbReceiptError.classList.add('hidden');
+    sendReceiptBtn.disabled = true;
+    sendReceiptBtn.textContent = 'در حال ارسال...';
+
+    const orderCode = generateOrderCode();
     const lines = cart.map(item => `• ${item.label} (${item.meta}) — ${formatToman(item.price)} تومان`).join('\n');
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     const buyerName = currentUser ? currentUser.name : 'کاربر مهمان';
     const buyerEmail = currentUser ? currentUser.email : '-';
-    const message = `🛒 سفارش جدید - Electron One\nخریدار: ${buyerName} (${buyerEmail})\n${lines}\nجمع کل: ${formatToman(total)} تومان\nوضعیت: کاربر اعلام کرد پرداخت کرده — منتظر فیش در تلگرام`;
-    notifyTelegramOrder(message);
-  });
 
-  receiptDoneBtn.addEventListener('click', () => {
-    pbTelegramStep.classList.add('hidden');
-    pbDoneStep.classList.remove('hidden');
-    cart = [];
-    renderCart();
+    let caption = `✅ سفارش جدید - Electron One\nکد سفارش: ${orderCode}\nخریدار: ${buyerName} (${buyerEmail})\n${lines}\nجمع کل: ${formatToman(total)} تومان`;
+    if(categories.has('cp')){
+      caption += `\n\n🎮 اطلاعات بازی:\nآیدی: ${cpGameId}\nایمیل: ${cpGameEmail}\nرمز عبور: ${cpGamePass}\nروش ورود: ${cpLoginMethod}`;
+    }
+    if(categories.has('ai')){
+      caption += `\n\n🤖 اطلاعات اکانت هوش مصنوعی:\nایمیل: ${aiAccEmail}\nرمز عبور: ${aiAccPass}`;
+    }
+    if(categories.has('vpn')){
+      caption += `\n\n🔒 سفارش VPN\nآیدی تلگرام خریدار: ${vpnTelegramId}\nلینک اتصال رو بعد از تایید پرداخت مستقیم به همین آیدی ارسال کنید.`;
+    }
+
+    notifyTelegramReceipt(file, caption).finally(() => {
+      pbReceiptStep.classList.add('hidden');
+      pbDoneStep.classList.remove('hidden');
+      pbOrderCode.textContent = `کد پیگیری سفارش شما: ${orderCode}`;
+      cart = [];
+      renderCart();
+    });
   });
 
   signupForm.addEventListener('submit', (e) => {
@@ -1671,13 +1826,14 @@
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       let item;
+      const category = btn.dataset.category || 'other';
       if(btn.dataset.meta){
-        item = { label: btn.dataset.label, meta: btn.dataset.meta, price: Number(btn.dataset.price) };
+        item = { label: btn.dataset.label, meta: btn.dataset.meta, price: Number(btn.dataset.price), category };
       } else if(btn.id === 'buyGbBtn'){
         const gb = Number(gbSlider.value);
-        item = { label: 'حجم سفارشی', meta: 'یک ماهه', price: gb * RATE_TOMAN_PER_GB };
+        item = { label: 'حجم سفارشی', meta: 'یک ماهه', price: gb * RATE_TOMAN_PER_GB, category };
       } else {
-        item = { label: btn.dataset.label, gb: Number(btn.dataset.gb), days: Number(btn.dataset.days), price: Number(btn.dataset.price) };
+        item = { label: btn.dataset.label, gb: Number(btn.dataset.gb), days: Number(btn.dataset.days), price: Number(btn.dataset.price), category };
       }
       if(currentUser){
         cart.push(item);
